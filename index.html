@@ -1,354 +1,861 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bubbles & Bliss | Handmade Soaps & Gift Hampers</title>
-  <meta name="description" content="Bubbles & Bliss creates handmade soaps, massage bars, gifting hampers, and return gifts crafted with care." />
-  <meta name="theme-color" content="#f6eee8" />
+  <meta name="description" content="Bubbles & Bliss offers handmade soaps, massage bars, hanging soaps, kids toy soaps, and giftable skincare treats crafted for self-care and special occasions." />
+  <meta name="theme-color" content="#f8f2ec" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
-      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
-      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
-      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --radius-md: 0.75rem;
-      --radius-lg: 1rem;
-      --radius-xl: 1.5rem;
-      --radius-full: 9999px;
-      --color-bg: #fbf7f3;
-      --color-surface: #fffdfa;
-      --color-surface-2: #f6eee8;
-      --color-border: rgba(40, 32, 25, 0.12);
-      --color-text: #2d211c;
-      --color-text-muted: #786b63;
-      --color-primary: #b66b7a;
-      --color-primary-dark: #955160;
-      --color-accent: #e7c9a9;
-      --color-green: #7d9a7a;
-      --shadow-sm: 0 8px 30px rgba(64, 38, 26, 0.06);
-      --shadow-md: 0 18px 50px rgba(64, 38, 26, 0.12);
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'Manrope', system-ui, sans-serif;
+    :root, [data-theme="light"] {
+      --bg: #f8f2ec;
+      --surface: #fffaf6;
+      --surface-2: #f3e7dc;
+      --surface-3: #f9efe7;
+      --text: #2b211d;
+      --muted: #7a675e;
+      --primary: #bb6d7d;
+      --primary-strong: #a24f62;
+      --secondary: #dca463;
+      --line: rgba(53, 34, 24, 0.12);
+      --shadow: 0 20px 55px rgba(88, 52, 40, 0.12);
+      --shadow-soft: 0 12px 30px rgba(88, 52, 40, 0.08);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --max: 1180px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.6;
+      margin: 0;
+      font-family: 'Manrope', Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(220,164,99,0.15), transparent 30%),
+        radial-gradient(circle at top right, rgba(187,109,125,0.14), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
     }
-    img { max-width: 100%; display: block; border-radius: calc(var(--radius-xl) - var(--space-3)); }
+    img { display: block; max-width: 100%; object-fit: cover; }
     a { color: inherit; text-decoration: none; }
-    .container { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
-    .site-header {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(251,247,243,0.82);
-      border-bottom: 1px solid var(--color-border);
+    .container { width: min(calc(100% - 24px), var(--max)); margin: auto; }
+    .skip-link { position: absolute; left: -9999px; top: 1rem; background: var(--primary); color: #fff; padding: .75rem 1rem; border-radius: 999px; }
+    .skip-link:focus { left: 1rem; z-index: 100; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(248,242,236,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
     .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      min-height: 74px; gap: var(--space-4);
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
     }
-    .brand { display: inline-flex; align-items: center; gap: 0.8rem; font-weight: 700; }
-    .brand svg { width: 42px; height: 42px; color: var(--color-primary); }
-    .brand-name { display: flex; flex-direction: column; line-height: 1.05; }
-    .brand-name span:first-child { font-family: var(--font-display); font-size: 1.35rem; }
-    .brand-name span:last-child { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); }
-    .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; font-size: var(--text-sm); color: var(--color-text-muted); }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      min-height: 46px; padding: 0.8rem 1.2rem; border-radius: var(--radius-full);
-      border: 1px solid transparent; font-weight: 700; font-size: var(--text-sm);
-      transition: 180ms ease;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 0;
     }
-    .btn-primary { background: var(--color-primary); color: #fff; box-shadow: var(--shadow-sm); }
-    .btn-primary:hover { background: var(--color-primary-dark); }
-    .btn-secondary { background: transparent; border-color: var(--color-border); }
-    .btn-secondary:hover { background: var(--color-surface); }
-    .hero { padding: clamp(3rem, 7vw, 6rem) 0 var(--space-16); }
-    .hero-grid { display: grid; gap: var(--space-8); align-items: center; }
+    .brand-mark {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ffe7ea, #f2d6dd 55%, #f9efe7);
+      color: var(--primary-strong);
+      box-shadow: var(--shadow-soft);
+      flex: 0 0 auto;
+    }
+    .brand-name {
+      min-width: 0;
+      display: grid;
+      gap: .15rem;
+    }
+    .brand-name strong {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: clamp(2.35rem, 3.4vw, 3.9rem);
+      line-height: .95;
+      letter-spacing: .01em;
+      display: block;
+    }
+    .brand-name span {
+      color: var(--muted);
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-size: .96rem;
+      font-weight: 600;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      padding: .85rem 1.15rem;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff !important;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      padding: clamp(3.6rem, 7vw, 6.6rem) 0 3rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 2rem;
+      align-items: center;
+    }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .8rem;
-      border-radius: var(--radius-full); background: var(--color-surface-2); color: var(--color-primary-dark);
-      font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .12em; font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .5rem .85rem;
+      border-radius: 999px;
+      background: rgba(187,109,125,.12);
+      color: var(--primary-strong);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .75rem;
+      font-weight: 800;
     }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.05; }
-    h1 { font-size: clamp(2.8rem, 8vw, 5.7rem); max-width: 10ch; margin-top: 1rem; }
-    .lead { color: var(--color-text-muted); max-width: 58ch; margin-top: 1rem; font-size: var(--text-base); }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,253,250,.95), rgba(246,238,232,.85));
-      border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-3);
-      box-shadow: var(--shadow-md);
+    h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; margin: 0; line-height: .96; }
+    h1 {
+      font-size: clamp(2.9rem, 5.8vw, 5.8rem);
+      max-width: 10ch;
+      margin: 1rem 0 1rem;
     }
-    .hero-visual { display: grid; gap: var(--space-3); }
-    .hero-visual .grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-3); }
-    .stat-strip {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-3); margin-top: var(--space-3);
+    .hero-copy p {
+      font-size: 1.06rem;
+      color: var(--muted);
+      max-width: 58ch;
+      margin: 0;
     }
-    .stat {
-      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
-      padding: 1rem;
+    .cta-row {
+      display: flex;
+      gap: .9rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
     }
-    .stat strong { display: block; font-size: 1.1rem; }
-    .section { padding: clamp(3rem, 6vw, 5rem) 0; }
-    .section-header { display: grid; gap: .75rem; margin-bottom: 2rem; }
-    .section-header p { color: var(--color-text-muted); max-width: 64ch; }
-    .about-grid, .gift-grid, .contact-grid { display: grid; gap: 1.25rem; }
-    .card {
-      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl);
-      padding: 1.25rem; box-shadow: var(--shadow-sm);
+    .btn {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .95rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: .96rem;
+      transition: .22s ease;
     }
-    .catalog {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      color: white;
+      box-shadow: 0 16px 30px rgba(162,79,98,0.22);
     }
-    .product-card { overflow: hidden; display: flex; flex-direction: column; gap: .9rem; }
-    .product-card img { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .tag {
-      font-size: var(--text-xs); padding: .35rem .65rem; border-radius: var(--radius-full);
-      background: var(--color-surface-2); color: var(--color-primary-dark); font-weight: 700;
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
     }
-    .price { font-weight: 800; }
-    .muted { color: var(--color-text-muted); }
-    .split-note {
-      display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    .trust-line {
+      margin-top: 1.35rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .94rem;
+      font-weight: 700;
     }
-    .testimonial-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .faq details {
-      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+    .trust-line span {
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(53,34,24,.08);
+      padding: .55rem .8rem;
+      border-radius: 999px;
+    }
+
+    .hero-copy {
+      position: relative;
+    }
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      right: 2%;
+      top: -30px;
+      background: radial-gradient(circle, rgba(220,164,99,.16), transparent 62%);
+      pointer-events: none;
+      filter: blur(6px);
+    }
+    .hero-note {
+      margin-top: 1.4rem;
       padding: 1rem 1.1rem;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(255,247,240,.95));
+      border: 1px solid rgba(53,34,24,.08);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: .25rem;
+      max-width: 34rem;
     }
-    .faq { display: grid; gap: .9rem; }
-    summary { cursor: pointer; font-weight: 700; list-style: none; }
-    details p { margin-top: .7rem; color: var(--color-text-muted); }
-    .contact-panel {
-      background: linear-gradient(135deg, rgba(182,107,122,.10), rgba(231,201,169,.26));
-      border: 1px solid rgba(182,107,122,.2);
+    .hero-note strong {
+      font-size: 1rem;
     }
-    .footer { padding: 2rem 0 3rem; color: var(--color-text-muted); }
-    .mini { font-size: var(--text-sm); }
-    @media (min-width: 860px) {
-      .hero-grid { grid-template-columns: 1.05fr .95fr; }
-      .about-grid { grid-template-columns: 1.1fr .9fr; }
-      .gift-grid { grid-template-columns: repeat(3, 1fr); }
-      .contact-grid { grid-template-columns: 1fr .9fr; }
+    .hero-note span {
+      color: var(--muted);
+      font-size: .95rem;
     }
-    @media (max-width: 680px) {
-      .nav { padding: .8rem 0; align-items: flex-start; flex-direction: column; }
-      .nav-links { gap: .75rem; }
-      .stat-strip { grid-template-columns: 1fr; }
-      .hero-visual .grid { grid-template-columns: 1fr; }
+    .selling-band {
+      padding-top: .3rem;
+    }
+    .selling-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .9fr;
+      gap: 1rem;
+    }
+    .selling-card {
+      padding: 1.25rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,248,242,.98));
+      border: 1px solid rgba(53,34,24,.08);
+      border-radius: 26px;
+      box-shadow: var(--shadow-soft);
+    }
+    .selling-card strong {
+      display: block;
+      font-size: 1.08rem;
+      margin-bottom: .45rem;
+    }
+    .selling-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .selling-card.highlight {
+      background: linear-gradient(135deg, rgba(187,109,125,.12), rgba(220,164,99,.18), rgba(255,255,255,.95));
+    }
+    .section-accent {
+      background: linear-gradient(180deg, rgba(255,248,242,.5), rgba(255,255,255,0));
+    }
+    .sticky-wa {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .9rem 1.1rem;
+      border-radius: 999px;
+      background: #25D366;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 18px 34px rgba(37, 211, 102, 0.28);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,250,246,.95));
+      border: 1px solid rgba(53,34,24,.08);
+      box-shadow: var(--shadow);
+      border-radius: 32px;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 24px auto auto -24px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(187,109,125,.20), transparent 62%);
+      pointer-events: none;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(220,164,99,.24), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-collage {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1rem;
+    }
+    .hero-collage img,
+    .stack img,
+    .feature-card img,
+    .about-visual img,
+    .ig-strip img {
+      width: 100%;
+      border-radius: 22px;
+      background: var(--surface-2);
+    }
+    .hero-collage > img { height: 470px; }
+    .stack { display: grid; gap: 1rem; }
+    .stack img { height: 227px; }
+
+    section { padding: 2.8rem 0; }
+    .section-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.45rem;
+    }
+    .section-intro p {
+      max-width: 54ch;
+      color: var(--muted);
+      margin: 0;
+    }
+    h2 { font-size: clamp(2rem, 3.5vw, 3.6rem); }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .story-copy p {
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+    .about-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .about-visual img:first-child { height: 380px; }
+    .about-visual img:last-child { height: 260px; margin-top: 4rem; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+    .feature-card,
+    .soft-card,
+    .testimonial,
+    .faq-item,
+    .contact-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      padding: 1.35rem 1.25rem;
+      box-shadow: var(--shadow-soft);
+    }
+    .feature-card img {
+      height: 180px;
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: .45rem;
+    }
+    .feature-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .7rem;
+    }
+    .pill {
+      font-size: .75rem;
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      background: rgba(187,109,125,.08);
+      color: var(--primary-strong);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .pill.soft {
+      background: rgba(220,164,99,.1);
+      color: var(--secondary);
+    }
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+    .soft-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: .45rem;
+    }
+    .soft-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+    .testimonial {
+      position: relative;
+      padding-top: 1.6rem;
+    }
+    .testimonial::before {
+      content: "“";
+      position: absolute;
+      top: .4rem;
+      left: .9rem;
+      font-size: 2.4rem;
+      color: rgba(187,109,125,.3);
+      font-family: 'Instrument Serif', Georgia, serif;
+    }
+    .testimonial p {
+      margin: 0 0 .7rem;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+    .testimonial strong {
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+    .faq-item h3 {
+      font-size: 1.02rem;
+      margin-bottom: .35rem;
+    }
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .ig-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .8rem;
+      margin-top: 1.25rem;
+    }
+    .ig-strip a { border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .contact-card {
+      display: grid;
+      gap: .75rem;
+    }
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .contact-links {
+      display: grid;
+      gap: .5rem;
+      margin-top: .4rem;
+    }
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 700;
+    }
+    .wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .65rem .95rem;
+      border-radius: 999px;
+      background: #25D366;
+      color: #fff;
+      font-size: .92rem;
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 1.8rem 0 2.2rem;
+      border-top: 1px solid var(--line);
+      background: rgba(255,250,246,.9);
+      margin-top: 1.5rem;
+    }
+    footer .foot-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    footer a {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .nav { flex-direction: column; align-items: flex-start; padding: .7rem 0; }
+      .hero-grid,
+      .story,
+      .contact-grid,
+      .feature-grid,
+      .gift-grid,
+      .testimonial-grid,
+      .faq-grid,
+      .ig-strip,
+      .selling-grid { grid-template-columns: 1fr; }
+      .hero-collage > img { height: 340px; }
+      .stack img { height: 190px; }
+      .about-visual img:first-child { height: 320px; }
+      .about-visual img:last-child { margin-top: 1.4rem; height: 220px; }
+      .section-intro { flex-direction: column; align-items: flex-start; }
+      .contact-grid { gap: 1.4rem; }
+    }
+    @media (max-width: 640px) {
+      header { position: static; }
+      .hero { padding-top: 2.3rem; }
+      .brand-mark { width: 60px; height: 60px; }
+      .brand-name strong { font-size: 2.35rem; }
+      .hero-collage > img { height: 290px; }
+      .stack img { height: 180px; }
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .trust-line span { width: 100%; justify-content: center; display: flex; }
+      .sticky-wa { right: 12px; bottom: 12px; padding-inline: .9rem; }
     }
   </style>
 </head>
 <body>
-  <a href="#main" style="position:absolute;left:-9999px;top:auto;">Skip to content</a>
-  <header class="site-header">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
     <div class="container nav">
-      <a href="#top" class="brand" aria-label="Bubbles and Bliss home">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="22" cy="22" r="12" stroke="currentColor" stroke-width="3"/>
-          <circle cx="40" cy="28" r="16" stroke="currentColor" stroke-width="3"/>
-          <circle cx="26" cy="42" r="8" stroke="currentColor" stroke-width="3"/>
-          <path d="M19 10c2 6 8 9 13 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-        <span class="brand-name">
-          <span>Bubbles &amp; Bliss</span>
-          <span>handmade bathing bars</span>
-        </span>
-      </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#catalog">Products</a>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <span style="font-size: 1.1rem; font-weight: 800;">B&B</span>
+        </div>
+        <div class="brand-name">
+          <strong>Bubbles & Bliss</strong>
+          <span>HANDMADE SOAP · GIFTING</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#products">Products</a>
         <a href="#gifting">Gifting</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
+        <a href="#testimonials">Love from customers</a>
+        <a href="#contact" class="nav-cta">WhatsApp to order</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="top">
+    <section class="hero">
       <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Handmade soaps · Pune</div>
+          <h1>Small soaps, big smiles.</h1>
+          <p>Bubbles & Bliss creates charming handmade soaps, massage bars, decorative gifting soaps, and thoughtful little self-care treats made for everyday indulgence, festive gifting, and memorable return favors.</p>
+          <div class="hero-note">
+            <strong>Make gifting feel luxurious, personal, and unforgettable.</strong>
+            <span>From skin-loving daily bars to cute return gifts, every product is crafted to look premium the moment your customer sees it.</span>
+          </div>
+          <div class="cta-row">
+            <a href="https://wa.me/919041041059" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
+            <a href="#products" class="btn btn-secondary">Browse cute soaps</a>
+          </div>
+          <div class="trust-line">
+            <span>Perfect for birthdays & return gifts</span>
+            <span>Custom hampers for festive gifting</span>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Featured soap collection">
+          <div class="hero-collage">
+            <img src="assets/hero-soap-1.jpeg" alt="Assorted handcrafted soaps styled with ribbon and flowers" loading="lazy">
+            <div class="stack">
+              <img src="assets/hero-soap-1.jpeg" alt="Massage bars and decorative soaps arranged as a gift set" loading="lazy">
+              <img src="assets/hero-soap-3.jpeg" alt="Hanging soaps and kids toy soaps displayed for gifting" loading="lazy">
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="selling-band">
+      <div class="container selling-grid">
+        <article class="selling-card highlight">
+          <strong>Looks premium at first glance</strong>
+          <p>Elegant shapes, soft tones, and gift-ready presentation help customers feel they are buying something special, not ordinary soap.</p>
+        </article>
+        <article class="selling-card">
+          <strong>Made for repeat orders</strong>
+          <p>Perfect for birthdays, festive gifting, return gifts, hampers, and personal self-care picks that customers want to reorder.</p>
+        </article>
+        <article class="selling-card">
+          <strong>Easy to order instantly</strong>
+          <p>Clear WhatsApp and Instagram actions make it simple to enquire, customise, and place an order in minutes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section-accent">
+      <div class="container section-intro">
         <div>
-          <span class="eyebrow">Handmade · gift-ready · small batch</span>
-          <h1>Soap bars and gifting pieces made with warmth, care, and a little joy.</h1>
-          <p class="lead">Bubbles &amp; Bliss brings together handmade soaps, massage bars, return-gift ideas, and thoughtful self-care pieces designed to feel personal. This starter website is structured so you can easily swap in the exact Instagram product photos, names, and order details.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#catalog">Browse products</a>
-            <a class="btn btn-secondary" href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">DM on Instagram</a>
-          </div>
+          <h2>Homemade with love, finished like a boutique gift.</h2>
         </div>
-        <div class="hero-visual hero-card">
-          <img src="https://images.unsplash.com/photo-1607006483225-71f3811c4b6c?auto=format&fit=crop&w=1000&q=80" width="1000" height="1200" alt="Artisan soap bars arranged on a soft neutral surface" loading="lazy">
-          <div class="grid">
-            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" width="800" height="900" alt="Wrapped handmade soap gift set styled for gifting" loading="lazy">
-            <img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80" width="800" height="900" alt="Natural skin care bars displayed in soft daylight" loading="lazy">
-          </div>
-          <div class="stat-strip">
-            <div class="stat"><strong>Handmade</strong><span class="mini muted">Small-batch presentation focused on gifting and bathing rituals.</span></div>
-            <div class="stat"><strong>Gift-ready</strong><span class="mini muted">Suitable for return gifts, hampers, festive picks, and curated orders.</span></div>
-            <div class="stat"><strong>Customizable</strong><span class="mini muted">Easy to adapt with your actual product photos, pricing, and WhatsApp link.</span></div>
-          </div>
+        <p>Bubbles & Bliss is all about turning a simple soap into something delightful, whether it is a pretty gift hamper, a return gift for little guests, or a self-care pick-me-up for your daily routine.</p>
+      </div>
+      <div class="container story">
+        <div class="story-copy">
+          <p>Every bar is crafted in small batches, carefully poured, demoulded, and finished so that it looks as good as it feels on the skin. From cute kids toy soaps to elegant massage bars, each piece is designed to bring a little joy to your everyday bath ritual.</p>
+          <p>We are based in Pune and happily prepare custom orders for birthdays, baby showers, festivals, corporate hampers, and return gifts. Simply send us your theme and budget – we will help you put together soaps that make your guests smile.</p>
+        </div>
+        <div class="about-visual" aria-hidden="true">
+          <img src="assets/about-main.jpeg" alt="Hand-poured soaps being wrapped as gifts" loading="lazy">
+          <img src="assets/about-detail.jpeg" alt="Close-up of decorative handmade soaps" loading="lazy">
         </div>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="section-header">
-          <span class="eyebrow">About the brand</span>
-          <h2>Made to feel personal, not mass-produced.</h2>
-          <p>Bubbles &amp; Bliss is presented as a warm, handcrafted self-care and gifting brand. The website tone is intentionally soft, clean, and premium so it can support both everyday bathing bars and occasion-based gifting collections.</p>
-          <div class="split-note">
-            <div class="card">
-              <h3>What this website is for</h3>
-              <p class="muted">Showcase soaps, massage bars, hanging soaps, return gifts, and gift hampers in one clean catalog layout that is easy to update.</p>
-            </div>
-            <div class="card">
-              <h3>What to replace later</h3>
-              <p class="muted">Swap the temporary stock visuals with your actual Instagram product pictures and update order buttons with your live WhatsApp number.</p>
-            </div>
+    <section id="products">
+      <div class="container section-intro">
+        <div>
+          <h2>Soaps that look as special as they feel.</h2>
+        </div>
+        <p>Explore soaps made for pampering, gifting, festive hampers, and charming return gifts, all chosen to feel irresistible, useful, and beautiful enough to order right away.</p>
+      </div>
+      <div class="container feature-grid" aria-label="Featured products">
+        <article class="feature-card">
+          <img src="assets/orange-peel-honey.jpeg" alt="Orange peel and honey massage bar soap" loading="lazy">
+          <h3>Orange Peel & Honey Massage Bar</h3>
+          <p>A textured massage bar with real orange peel and nourishing honey for a refreshing, gentle exfoliation.</p>
+          <div class="feature-meta">
+            <span class="pill">Massage bar</span>
+            <span class="pill soft">Citrus glow</span>
           </div>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80" width="900" height="1100" alt="Gift packaging and handmade beauty products styled on a table" loading="lazy">
-        </div>
+        </article>
+        <article class="feature-card">
+          <img src="assets/hanging-soap.jpeg" alt="Decorative hanging soap tied with ribbon" loading="lazy">
+          <h3>Decorative Hanging Soap</h3>
+          <p>Pretty hanging soaps that double up as decor in your bathroom or gifting baskets, perfect for return gifts.</p>
+          <div class="feature-meta">
+            <span class="pill">Hanging soap</span>
+            <span class="pill soft">Return gift</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="assets/gift-hamper.jpeg" alt="Handcrafted soap gift hamper with multiple bars" loading="lazy">
+          <h3>Custom Soap Gift Hampers</h3>
+          <p>Curated gift hampers with a mix of soaps and massage bars tailored to your theme, occasion, and budget.</p>
+          <div class="feature-meta">
+            <span class="pill">Gift hamper</span>
+            <span class="pill soft">Festive & events</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <img src="assets/d-tan-soap.jpeg" alt="D Tan soap bar for tan removal" loading="lazy">
+          <h3>D Tan Soap</h3>
+          <p>A targeted bar crafted to help gently reduce tanning and brighten skin tone with regular use.</p>
+          <div class="feature-meta">
+            <span class="pill">Tan removal</span>
+            <span class="pill soft">Brightening</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="assets/rice-shine-soap.jpeg" alt="Rice and Shine brightening soap bar" loading="lazy">
+          <h3>Rice & Shine Soap</h3>
+          <p>A smooth bar inspired by rice-based skincare, made to support softer, clearer-looking, radiant skin.</p>
+          <div class="feature-meta">
+            <span class="pill">Radiance</span>
+            <span class="pill soft">Skin whitening feel</span>
+          </div>
+        </article>
+        <article class="feature-card">
+          <img src="assets/kids-toy-soap.jpeg" alt="Kids toy soaps shaped like a train and cute figures" loading="lazy">
+          <h3>Kids Toy Soap</h3>
+          <p>Adorable soaps shaped like toys – think tiny trains and fun figures – to make bath-time exciting for little ones.</p>
+          <div class="feature-meta">
+            <span class="pill">Kids special</span>
+            <span class="pill soft">Toy shapes</span>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="section" id="catalog">
+    <section id="gifting">
+      <div class="container section-intro">
+        <div>
+          <h2>Made for gifting, hampers & return favors.</h2>
+        </div>
+        <p>Whether you are planning a birthday, festival, baby shower, or corporate event, Bubbles & Bliss can put together soaps that match your colours, theme, and budget.</p>
+      </div>
+      <div class="container gift-grid">
+        <article class="soft-card">
+          <h3>Birthday return gifts</h3>
+          <p>Kid-friendly shapes and colours that little guests love to take home. Add personalised tags to match your party theme.</p>
+        </article>
+        <article class="soft-card">
+          <h3>Festive & seasonal hampers</h3>
+          <p>Diwali, Rakhi, Christmas, or New Year – build hampers with soaps that feel warm, thoughtful, and gift-ready.</p>
+        </article>
+        <article class="soft-card">
+          <h3>Corporate & bulk orders</h3>
+          <p>Welcome kits, appreciation boxes, or client gifts with customised tags and branding on request.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="container section-intro">
+        <div>
+          <h2>What happy customers say.</h2>
+        </div>
+        <p>Real feedback from people who have ordered Bubbles & Bliss soaps for themselves, their kids, and their guests.</p>
+      </div>
+      <div class="container testimonial-grid">
+        <article class="testimonial">
+          <p>The soaps looked even prettier in real life than in the pictures. My guests kept asking where I got them made!</p>
+          <strong>Return-gift mom</strong>
+        </article>
+        <article class="testimonial">
+          <p>The massage bars feel amazing on the skin and smell so good. It honestly feels like a mini-spa every time I use them.</p>
+          <strong>Self-care customer</strong>
+        </article>
+        <article class="testimonial">
+          <p>She patiently understood my theme and suggested colours and shapes. The kids were so excited with the toy soaps.</p>
+          <strong>Birthday organiser</strong>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="container section-intro">
+        <div>
+          <h2>Common questions.</h2>
+        </div>
+        <p>Some quick answers before you place your order. You can always WhatsApp for anything more specific.</p>
+      </div>
+      <div class="container faq-grid">
+        <article class="faq-item">
+          <h3>Are your soaps suitable for kids?</h3>
+          <p>Yes, we design gentle options and kids toy soaps, but if your child has very sensitive skin, please share details so we can guide appropriately.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do you take return-gift and bulk orders?</h3>
+          <p>Absolutely. We regularly prepare return gifts and bulk orders. Share your quantity, date, and theme on WhatsApp to get started.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I customise colours, shapes, or tags?</h3>
+          <p>Yes, we love custom orders. We can suggest combinations based on your theme and prepare matching tags or simple packaging.</p>
+        </article>
+        <article class="faq-item">
+          <h3>How much time do you need to prepare an order?</h3>
+          <p>For small orders, 3–5 days is usually enough. Bulk and return-gift orders are best booked at least 1–2 weeks in advance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-label="Instagram gallery">
+      <div class="container section-intro">
+        <div>
+          <h2>See more on Instagram.</h2>
+        </div>
+        <p>Browse the feed for the latest designs, colours, and ready hampers before you place your order.</p>
+      </div>
       <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Catalog starter</span>
-          <h2>Products to highlight first</h2>
-          <p>These sections are arranged so you can quickly map Instagram posts into a polished catalog. Product names and descriptions below are starter content based on the brand direction discussed earlier and should be refined with your exact post captions.</p>
-        </div>
-        <div class="catalog">
-          <article class="card product-card">
-            <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=900&q=80" width="900" height="1125" alt="Massage bar soap with textured handmade finish" loading="lazy">
-            <div class="tag-row"><span class="tag">Massage Bar</span><span class="tag">Best seller style</span></div>
-            <h3>Massage Bar</h3>
-            <p class="muted">A tactile bathing bar designed to make shower time feel more soothing and giftable.</p>
-            <p class="price">DM for price</p>
-          </article>
-          <article class="card product-card">
-            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=80" width="900" height="1125" alt="Honey and orange-toned handmade soap bars" loading="lazy">
-            <div class="tag-row"><span class="tag">Orange Peel</span><span class="tag">Honey</span></div>
-            <h3>Orange Peel &amp; Honey Massage Bars</h3>
-            <p class="muted">A warmer fragrance-forward option positioned as a sensory self-care bar with a handcrafted finish.</p>
-            <p class="price">DM for price</p>
-          </article>
-          <article class="card product-card">
-            <img src="https://images.unsplash.com/photo-1631730359585-38a4935cbec4?auto=format&fit=crop&w=900&q=80" width="900" height="1125" alt="Decorative hanging soap tied with ribbon" loading="lazy">
-            <div class="tag-row"><span class="tag">Hanging Soap</span><span class="tag">Decorative</span></div>
-            <h3>Hanging Soap</h3>
-            <p class="muted">A decorative soap format that works beautifully for return gifts, festive packing, and curated hampers.</p>
-            <p class="price">DM for price</p>
-          </article>
-          <article class="card product-card">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80" width="900" height="1125" alt="Gift hamper with bath and self-care items" loading="lazy">
-            <div class="tag-row"><span class="tag">Gift Hamper</span><span class="tag">Festive</span></div>
-            <h3>Curated Gift Hampers</h3>
-            <p class="muted">A flexible gifting format for birthdays, festive moments, return gifts, and thoughtful surprise boxes.</p>
-            <p class="price">Custom quote</p>
-          </article>
+        <div class="ig-strip">
+          <a href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/ig-1.jpeg" alt="Handmade soap gallery preview 1" loading="lazy">
+          </a>
+          <a href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/ig-2.jpeg" alt="Handmade soap gallery preview 2" loading="lazy">
+          </a>
+          <a href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/ig-3.jpeg" alt="Handmade soap gallery preview 3" loading="lazy">
+          </a>
+          <a href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/ig-4.jpeg" alt="Handmade soap gallery preview 4" loading="lazy">
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="gifting">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Occasions</span>
-          <h2>Built for gifting as much as for daily use.</h2>
-          <p>This section helps position the brand beyond individual soap bars, making the website more useful for customers looking for events, return gifts, or festive packaging.</p>
+    <section id="contact">
+      <div class="container section-intro">
+        <div>
+          <h2>Ready to plan your soaps?</h2>
         </div>
-        <div class="gift-grid">
-          <div class="card">
-            <h3>Birthday return gifts</h3>
-            <p class="muted">Add mini soaps, decorative wrapping, and theme-friendly color styling for small celebrations and party packs.</p>
-          </div>
-          <div class="card">
-            <h3>Festive gifting</h3>
-            <p class="muted">Curate premium-looking bundles for Diwali, Rakhi, Christmas, or personal gifting moments.</p>
-          </div>
-          <div class="card">
-            <h3>Bulk custom orders</h3>
-            <p class="muted">Use this area to invite inquiries for quantity orders, event packs, or personalized packaging requests.</p>
-          </div>
-        </div>
+        <p>If you are choosing a gift, planning return favours, or simply looking for a lovely handmade soap for yourself, Bubbles & Bliss is ready to help you pick the perfect set. Message on WhatsApp for quick replies, custom combinations, and easy ordering.</p>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Kind words</span>
-          <h2>Customer-love section placeholder</h2>
-          <p>Until you share real reviews, this section can stay as a visual placeholder or be replaced with genuine customer screenshots and short text testimonials.</p>
-        </div>
-        <div class="testimonial-grid">
-          <div class="card"><p>“The packaging looked so thoughtful and gift-ready. It felt personal from the first look.”</p><p class="mini muted">— Happy customer</p></div>
-          <div class="card"><p>“Loved the handmade touch and the way the bars looked premium without feeling overdone.”</p><p class="mini muted">— Returning buyer</p></div>
-          <div class="card"><p>“Perfect idea for small gifting and return-gift orders. Easy to recommend.”</p><p class="mini muted">— Gift shopper</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">FAQ</span>
-          <h2>Questions customers usually ask</h2>
-        </div>
-        <div class="faq">
-          <details><summary>How do I place an order?</summary><p>You can direct customers to Instagram DM, WhatsApp, or both. Replace the placeholder button links with your active order channel.</p></details>
-          <details><summary>Do you take bulk or return-gift orders?</summary><p>Yes — the site is structured to support return gifts, festive gifting, and quantity-based inquiries.</p></details>
-          <details><summary>Can products be customized?</summary><p>You can offer customization based on fragrance, packaging, quantity, and occasion once you finalize your process.</p></details>
-          <details><summary>Where do prices appear?</summary><p>Keep “DM for price” for items that vary, or replace it with fixed prices once your catalog is finalized.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
       <div class="container contact-grid">
-        <div class="section-header">
-          <span class="eyebrow">Contact</span>
-          <h2>Ready to make it live?</h2>
-          <p>Once you replace the photos and links, this website is ready to deploy on Vercel as a fast static site.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">Open Instagram</a>
-            <a class="btn btn-secondary" href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer">WhatsApp placeholder</a>
+        <article class="contact-card">
+          <h3>WhatsApp to get started</h3>
+          <p>Send us a message with your occasion, approximate quantity, and any theme or colours you have in mind. We will reply with ideas, pictures, and price options.</p>
+          <div class="contact-links">
+            <a class="wa-btn" href="https://wa.me/919041041059" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">✆</span> WhatsApp 9041041059
+            </a>
+            <a href="https://www.instagram.com/bubblesbliss26/" target="_blank" rel="noopener noreferrer">@bubblesbliss26 on Instagram</a>
           </div>
-        </div>
-        <div class="card contact-panel">
-          <h3>Before publishing</h3>
-          <p class="muted">Replace stock images with actual Instagram product pictures, update prices, add your real WhatsApp number, and review the product wording to match your catalog exactly.</p>
-        </div>
+        </article>
+        <article class="contact-card">
+          <h3>Helpful details to share</h3>
+          <p>To help us respond faster, you can mention:</p>
+          <ul style="margin: .3rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: .95rem;">
+            <li>Occasion (birthday, festival, return gift, corporate, etc.)</li>
+            <li>Approximate quantity needed and date required</li>
+            <li>Preferred colours, shapes, or any theme idea</li>
+          </ul>
+        </article>
+      </div>
+      <div class="container" style="margin-top: 1.8rem; text-align: center;">
+        <a href="https://wa.me/919041041059" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Tap to WhatsApp &amp; enquire</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container mini">
-      <p>Bubbles &amp; Bliss · Handmade soaps, gifting pieces, and small-batch self-care. Built as a static Vercel-ready starter site.</p>
+  <a class="sticky-wa" href="https://wa.me/919041041059" target="_blank" rel="noopener noreferrer" aria-label="Order on WhatsApp 9041041059">
+    <span aria-hidden="true">✆</span> WhatsApp 9041041059
+  </a>
+
+  <footer>
+    <div class="container foot-inner">
+      <p>© 2026 Bubbles & Bliss. Handmade soaps, gifting, and joyful little self-care moments.</p>
+      <a href="https://wa.me/919041041059" target="_blank" rel="noopener noreferrer">WhatsApp: 9041041059</a>
     </div>
   </footer>
 </body>
