@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bubbles &amp; Bliss | Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --radius-full: 9999px;
+      --color-bg: #fbf7f3;
+      --color-surface: #fffdfa;
+      --color-surface-2: #f6eee8;
+      --color-border: rgba(40, 32, 25, 0.12);
+      --color-text: #2d211c;
+      --color-text-muted: #786b63;
+      --color-primary: #b66b7a;
+      --color-primary-dark: #955160;
+      --shadow-sm: 0 8px 30px rgba(64, 38, 26, 0.06);
+      --shadow-md: 0 18px 50px rgba(64, 38, 26, 0.12);
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Manrope', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(251,247,243,0.9);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--space-4); min-height: 74px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.75rem; }
+    .brand img {
+      width: 42px; height: 42px; object-fit: cover; border-radius: 12px; display: block;
+    }
+    .brand-name { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-name span:first-child {
+      font-family: var(--font-display); font-size: 1.35rem;
+    }
+    .brand-name span:last-child {
+      font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted);
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 42px; padding: 0.6rem 1.1rem; border-radius: var(--radius-full);
+      border: 1px solid transparent; font-size: var(--text-sm); font-weight: 600;
+      cursor: pointer; background: transparent;
+    }
+    .btn-primary { background: var(--color-primary); color: #fff; box-shadow: var(--shadow-sm); }
+    .btn-primary:hover { background: var(--color-primary-dark); }
+    main { padding: var(--space-8) 0 var(--space-10); }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: var(--space-2);
+    }
+    .page-intro { color: var(--color-text-muted); margin-bottom: var(--space-6); max-width: 60ch; }
+    .product-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--space-4);
+    }
+    .product-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); box-shadow: var(--shadow-sm);
+      padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-3);
+    }
+    .product-image-btn {
+      border: none; padding: 0; background: none; cursor: pointer;
+      border-radius: calc(var(--radius-xl) - 0.5rem); overflow: hidden;
+    }
+    .product-image-btn img {
+      width: 100%; display: block; aspect-ratio: 4 / 5; object-fit: cover;
+    }
+    .product-name { font-weight: 700; font-size: var(--text-base); margin-bottom: 0.15rem; }
+    .product-price { font-weight: 800; font-size: var(--text-sm); }
+    .product-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem;
+    }
+    .tag {
+      font-size: var(--text-xs); padding: 0.25rem 0.6rem; border-radius: var(--radius-full);
+      background: var(--color-surface-2); color: var(--color-primary-dark); font-weight: 700;
+    }
+    .muted { color: var(--color-text-muted); font-size: var(--text-sm); }
+    footer { padding: var(--space-4) 0 var(--space-6); color: var(--color-text-muted); font-size: var(--text-sm); }
+    @media (max-width: 680px) {
+      .nav { flex-direction: column; align-items: flex-start; padding-block: 0.5rem; }
+    }
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      display: none; align-items: center; justify-content: center; z-index: 50;
+    }
+    .modal-backdrop.active { display: flex; }
+    .modal {
+      background: var(--color-surface); border-radius: var(--radius-xl);
+      max-width: 520px; width: calc(100% - 2rem); box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: var(--space-3) var(--space-4) var(--space-2); border-bottom: 1px solid var(--color-border);
+    }
+    .modal-title { font-family: var(--font-display); font-size: var(--text-lg); }
+    .modal-close { border: none; background: none; font-size: 1.2rem; cursor: pointer; }
+    .modal-body {
+      padding: var(--space-4); display: grid; gap: var(--space-3);
+    }
+    .modal-body img {
+      width: 100%; border-radius: var(--radius-lg); aspect-ratio: 4 / 5; object-fit: cover;
+    }
+    .modal-price { font-weight: 800; margin-top: 0.3rem; }
+    .modal-tags {
+      margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Back to home">
+        <img src="./assets/brand.jpeg" alt="Bubbles and Bliss brand mark" />
+        <span class="brand-name">
+          <span>Bubbles &amp; Bliss</span>
+          <span>handmade bathing bars</span>
+        </span>
+      </a>
+      <a href="index.html" class="btn btn-primary">Back to home</a>
+    </div>
+  </header>
+  <main class="container">
+    <section>
+      <h1>All products</h1>
+      <p class="page-intro">Click on any product image to see more details in a popup.</p>
+      <div class="product-grid">
+        <article class="product-card">
+          <button class="product-image-btn" data-name="Massage Bar" data-price="DM for price" data-description="A tactile bathing bar designed to make shower time feel more soothing and giftable." data-tags="Massage Bar, Everyday use, Gift friendly" data-image="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=900&q=80">
+            <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&w=900&q=80" alt="Massage bar soap with textured handmade finish" loading="lazy" />
+          </button>
+          <div>
+            <div class="product-name">Massage Bar</div>
+            <div class="product-price">DM for price</div>
+            <div class="product-tags">
+              <span class="tag">Massage Bar</span>
+              <span class="tag">Best seller style</span>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <button class="product-image-btn" data-name="Orange Peel &amp; Honey Massage Bars" data-price="DM for price" data-description="A warmer fragrance-forward option positioned as a sensory self-care bar with a handcrafted finish." data-tags="Orange Peel, Honey, Self-care" data-image="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=80">
+            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=900&q=80" alt="Honey and orange-toned handmade soap bars" loading="lazy" />
+          </button>
+          <div>
+            <div class="product-name">Orange Peel &amp; Honey Massage Bars</div>
+            <div class="product-price">DM for price</div>
+            <div class="product-tags">
+              <span class="tag">Orange Peel</span>
+              <span class="tag">Honey</span>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <button class="product-image-btn" data-name="Hanging Soap" data-price="DM for price" data-description="A decorative soap format that works beautifully for return gifts, festive packing, and curated hampers." data-tags="Hanging Soap, Decorative, Gifts" data-image="https://images.unsplash.com/photo-1631730359585-38a4935cbec4?auto=format&fit=crop&w=900&q=80">
+            <img src="https://images.unsplash.com/photo-1631730359585-38a4935cbec4?auto=format&fit=crop&w=900&q=80" alt="Decorative hanging soap tied with ribbon" loading="lazy" />
+          </button>
+          <div>
+            <div class="product-name">Hanging Soap</div>
+            <div class="product-price">DM for price</div>
+            <div class="product-tags">
+              <span class="tag">Hanging Soap</span>
+              <span class="tag">Decorative</span>
+            </div>
+          </div>
+        </article>
+        <article class="product-card">
+          <button class="product-image-btn" data-name="Curated Gift Hampers" data-price="Custom quote" data-description="A flexible gifting format for birthdays, festive moments, return gifts, and thoughtful surprise boxes." data-tags="Gift Hamper, Festive, Custom" data-image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80" alt="Gift hamper with bath and self-care items" loading="lazy" />
+          </button>
+          <div>
+            <div class="product-name">Curated Gift Hampers</div>
+            <div class="product-price">Custom quote</div>
+            <div class="product-tags">
+              <span class="tag">Gift Hamper</span>
+              <span class="tag">Festive</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">Bubbles &amp; Bliss · Product list page</div>
+  </footer>
+  <div class="modal-backdrop" id="product-modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Product name</h2>
+        <button class="modal-close" type="button" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img src="" alt="" id="modal-image" />
+        <div>
+          <p class="muted" id="modal-description"></p>
+          <p class="modal-price" id="modal-price"></p>
+          <div class="modal-tags" id="modal-tags"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const backdrop = document.getElementById('product-modal-backdrop');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalPrice = document.getElementById('modal-price');
+    const modalTags = document.getElementById('modal-tags');
+    const closeBtn = document.querySelector('.modal-close');
+    function openModal(btn) {
+      const name = btn.getAttribute('data-name');
+      const price = btn.getAttribute('data-price');
+      const description = btn.getAttribute('data-description');
+      const tags = (btn.getAttribute('data-tags') || '').split(',');
+      const image = btn.getAttribute('data-image');
+      modalTitle.textContent = name;
+      modalDescription.textContent = description;
+      modalPrice.textContent = price;
+      modalImage.src = image;
+      modalImage.alt = name;
+      modalTags.innerHTML = '';
+      tags.forEach(tag => {
+        const t = tag.trim();
+        if (!t) return;
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = t;
+        modalTags.appendChild(span);
+      });
+      backdrop.classList.add('active');
+      backdrop.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal() {
+      backdrop.classList.remove('active');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+    document.querySelectorAll('.product-image-btn').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn));
+    });
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>
